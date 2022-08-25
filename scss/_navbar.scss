@@ -1,0 +1,33 @@
+.navbar-brand img{
+    max-width: 30vw;
+    &:active {
+        transform: scale(.95);
+        
+    }
+}
+.bg-main{
+    background-color: $bgcolor;
+}
+.viewscolor {
+    color: $white;
+    &:hover{
+        transform: scale(1.15);
+        transition: transform (.7s);
+        color: $white;
+    }
+}
+ul li{
+    padding: 0 15px;
+    a{
+    color: $secundarycolor;
+    font-size: 1.5em;
+    text-align: center;
+    
+}
+}
+.navbar-toggler {
+    border-color: $secundarycolor;
+}
+.navbar-toggler-icon{
+    color: $secundarycolor;
+}

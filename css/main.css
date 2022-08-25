@@ -1,0 +1,27 @@
+.navbar-brand img {
+  max-width: 30vw; }
+  .navbar-brand img:active {
+    transform: scale(0.95); }
+
+.bg-main {
+  background-color: #2990c7; }
+
+.viewscolor {
+  color: #f0f0f0; }
+  .viewscolor:hover {
+    transform: scale(1.15);
+    transition: transform 0.7s;
+    color: #f0f0f0; }
+
+ul li {
+  padding: 0 15px; }
+  ul li a {
+    color: #142257;
+    font-size: 1.5em;
+    text-align: center; }
+
+.navbar-toggler {
+  border-color: #142257; }
+
+.navbar-toggler-icon {
+  color: #142257; }
