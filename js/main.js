@@ -24,6 +24,32 @@ for (let docs of plantel){
     documentos.push(docs.dni);
 }
 
+function ingreso (){
+    let mensaje = document.getElementById("mensaje");
+    let bienvenido = document.getElementById("dni_usuario");
+    let bienvenido_num = parseInt(bienvenido.value);
+    let comprobacion = documentos.includes(bienvenido_num);
+
+    if (comprobacion) {
+        function datos (usuario){
+            return usuario.dni == bienvenido_num 
+        }  
+        let nodo = plantel.find (datos);
+
+        let parrafo = document.createElement("p");
+        parrafo.innerText = `Bienvenido al sistema ${nodo.nombre}
+                            Debes realizar el monitoreo del ultimo partido`;
+        mensaje.append(parrafo);
+    } else {
+        document.body.innerHTML =   `<div id="error">
+                                    <h2> El usuario ${bienvenido.value} aún no esta registrado como jugador <h2>
+                                    <p> Para poder realizar el monitoreo primero debe registrarse<p>
+                                    <button><a href="registro.html">Registro</a></button>
+                                    <button><a href="monitoreo.html">Regresar al inicio</a></button>
+                                    <div>`
+    }
+    
+}
 
 function registro (){
     console.log("Debe registrarse como nuevo jugador");
@@ -59,28 +85,4 @@ function monitoreo (){
 }
 
 
-let bienvenido = prompt("Bienvenido, ingrese su dni");
 
-function login (documento){
-    return documento.dni == bienvenido; 
-}
-
-let nodo = plantel.find(login);
-
-    
-if (plantel.find(login)){    
-    console.log("Bienvenido ",nodo.nombre,"! Debes realizar al monitoreo del ultimo partido!");
-    monitoreo();
-} else {
-    registro();
-    monitoreo();
-}
-
-
-let duda = prompt("Tenes Alguna duda?");
-if (duda == "no"){
-    console.log("Nos vemos en practica!!");
-
-} else {
-    console.log("Comunicate a la brevedad con alguno de los entrenadores");
-}

@@ -25,3 +25,22 @@ ul li {
 
 .navbar-toggler-icon {
   color: #142257; }
+
+#divIngreso, #divRegistro,#divMonitoreo, #error {
+  color: aliceblue;
+  width: 90vw;
+  background-color: #2990c7;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+#mensaje {
+  color: white;
+  font-size: 2em;
+  text-align: center;
+}
