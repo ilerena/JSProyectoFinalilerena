@@ -11,28 +11,37 @@
     <div id="divRegistro">
         <h2>REGISTRO</h2>
         <form action="">
-            <label for="ingreso">Bienvenido, ingrese su dni porfavor.</label>
-            <input type="text" id="bienvenido">
+            <p>Bienvenido! Ustede debe registrarse por primera y unica vez como nuevo jugador del plantel</p>
+            <p>A continuación, ingrese sus datos</p>
             <br>
-            <p>Debe registrase como nuevo jugador</p>
-            <label for="nombre">Ingrese su nombre</label>
-            <input type="text">
-            <br>
-            <label for="apellido">Ingrese su apellido</label>
-            <input type="text">
-            <br>
-            <label for="dni">Ingrese su dni</label>
-            <input type="text">
-            <br>
-            <label for="puesto">Ingrese su puesto</label>
-            <input type="text">
-            <br>
-            <label for="altura">Ingrese su altura</label>
-            <input type="text">
-            <br>
-            <label for="peso">Ingrese su peso</label>
-            <input type="text">
-        </div>
+            <input type="text" id="bienvenido" placeholder="DNI">
+            <input type="text" id="nombre" placeholder="Nombre">
+            <input type="text" id="apellido" placeholder="Apellido">
+            <label for="puesto">PUESTO</label>
+                <select id="puesto">
+                    <option value="1">Pilar Izquierdo</option>
+                    <option value="2">Hooker</option>
+                    <option value="3">Pilar Derecho</option>
+                    <option value="4">Segunda Linea Izquierdo</option>
+                    <option value="5">Segunda Linea Derecho</option>
+                    <option value="6">Ala izquierdo</option>
+                    <option value="7">Octavo</option>
+                    <option value="8">Ala derecho</option>
+                    <option value="9">Medio Scrum</option>
+                    <option value="10">Apertura</option>
+                    <option value="11">Wing Izquierdo</option>
+                    <option value="12">Primer Centro</option>
+                    <option value="13">Segundo Centro</option>
+                    <option value="14">Wing Derecho</option>
+                    <option value="15">Full Back</option>
+                </select>   
+            <label for="altura">ALTURA (cm)</label>
+                <input type="number">
+            <label for="peso">PESO (kg)</label>
+                <input type="number">
+            <button id="submit">ENVIAR REGISTRO</button>
+        </form>
+    </div>
 
 
 
