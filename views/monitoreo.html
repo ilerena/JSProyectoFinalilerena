@@ -13,23 +13,32 @@
         <h2>INGRESO </h2>
         <div>
             <label for="nombre_usuario">Ingrese su DNI</label>
-            <input type="text" id="dni_usuario">
-            <button onclick="ingreso()">Ingresar</button>
+            <input type="text" id="dni_usuario_ingreso">
+            <button id="botonIngreso">Ingresar</button>
 
             <div id="mensaje"></div>
         </div>
     </div>
     <div id="divMonitoreo">
+        </form action="">
+            <h2>MONITOREO</h2>
+            <label for="jugo">¿Jugaste el sabado?</label>
+                <select id="jugo">
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                </select>
+            <label for="minutosjugados">¿Cuantos Minutos jugaste el ultimo partido?"</label>
+                <input type="number" id="minutosjugados">
+            <label for="lesion">¿Estuviste lesionado?</label>
+                <select id="lesion">
+                    <option value="si">Si</option>
+                    <option value="no">No</option>
+                </select>
+            <button id="submitMonitoreo">ENVIAR MONITOREO</button>    
         </form>
-        <h2>MONITOREO</h2>
-        <label for="ultimo_partido">¿Jugaste el sabado? si o no</label>
-        <input type="text">
-        <br>
-        <label for="minutos_ultimo_partido">¿Cuantos Minutos jugaste el ultimo partido?"</label>
-        <input type="text">
-        <br>
-        <label for="minutos_ultimo_partido">¿Estuviste lesionado?</label>
-        <input type="text">
+        <div id="mensajeRegistro">
+            
+        </div>
     </div>
 
 

@@ -23,16 +23,17 @@ plantel.push(jugador3);
 for (let docs of plantel){
     documentos.push(docs.dni);
 }
-
+/*  
+let ingresoUsuario = document.getElementById("botonIngreso");
+ingresoUsuario.addEventListener("click", ingreso);
 function ingreso (){
     let mensaje = document.getElementById("mensaje");
-    let bienvenido = document.getElementById("dni_usuario");
-    let bienvenido_num = parseInt(bienvenido.value);
-    let comprobacion = documentos.includes(bienvenido_num);
+    let bienvenido = document.getElementById("dni_usuario_ingreso");
+    let comprobacion = documentos.includes(parseInt(bienvenido.value));
 
     if (comprobacion) {
         function datos (usuario){
-            return usuario.dni == bienvenido_num 
+            return usuario.dni == bienvenido.value 
         }  
         let nodo = plantel.find (datos);
 
@@ -50,42 +51,59 @@ function ingreso (){
     }
     
 }
+*/
 
+let nuevo_jugador = document.getElementById("submitRegistro");
+nuevo_jugador.addEventListener("click", registro);
 function registro (){
-    console.log("Debe registrarse como nuevo jugador");
-    let nombre = prompt("Ingrese su nombre");
-    let apellido = prompt("Ingrese su apellido");
-    let dni = prompt("Ingrese su DNI");
-    let puesto = parseInt(prompt("Ingrese su puesto (numero)"));
-    let altura = parseInt(prompt("Ingrese su altura en cm"));
-    let peso = parseInt(prompt("Ingrese su peso"));
+    let dni = document.getElementById("dni_registro");
+    let nombre = document.getElementById("nombre_registro");
+    let apellido = document.getElementById("apellido_registro");
+    let puesto = document.getElementById("puesto_registro");
+    let altura = document.getElementById("altura_registro");
+    let peso = document.getElementById("peso_registro");
+
     let nuevo_registro = new Jugadores(nombre, apellido, dni, puesto, altura, peso);
     plantel.push(nuevo_registro);
-    console.log(`Bienvenido ${nombre}`);
+    console.log(`Bienvenido al sistema ${nombre}. Ya sos oficialmente parte del plantel!`);
     
 }
+console.log(plantel);
 
+/*
+
+let monitoreo_partido = document.getElementById("submitMonitoreo");
+monitoreo_partido.addEventListener("click", monitoreo);
 function monitoreo (){
-    let ultimo_partido = prompt("¿Jugaste el sabado? si o no");
-    if (ultimo_partido == "si"){
-    let minutos_ultimo_partido = parseInt(prompt("¿Cuantos Minutos jugaste el ultimo partido?"));
-        if (minutos_ultimo_partido < 50){
-            console.log("Puede entrenar normalmente!")
+    let mensajeRegistro = document.getElementById("mensajeRegistro");
+    let ultimo_partido = document.getElementById("jugo");
+    if (ultimo_partido.value == "si"){
+    let minutos_ultimo_partido = document.getElementById("minutosjugados");
+        if (minutos_ultimo_partido.value < 50){
+            let parrafo = document.createElement("p");
+        parrafo.innerText = `Puede entrar normalmente!`;
+        mensajeRegistro.append(parrafo);
         } else{
-            console.log("Debes hacer recuperacion en hielo antes de la practica del lunes");
+            let parrafo = document.createElement("p");
+        parrafo.innerText = `Debes hacer recuperacion en hielo antes de la practica del lunes`;
+        mensajeRegistro.append(parrafo);
         }
     } else {
-    let lesion = prompt("¿Estuviste lesionado?");
-        if (lesion == "si"){
-        console.log("Continua con tu recuperación!");
+    let lesion = document.getElementById("lesion");
+        if (lesion.value == "si"){
+            let parrafo = document.createElement("p");
+            parrafo.innerText = `Continua con tu recuperación !`;
+            mensajeRegistro.append(parrafo);
         }  else {
-        console.log("Te esperamos en practica!");
+            let parrafo = document.createElement("p");
+            parrafo.innerText = `Te esperamos en practica!`;
+            mensajeRegistro.append(parrafo);
         }
     }
 }
+*/
 
-
-
+/*
 
 ///// BOUTIQUE /////
 const articulos = [
@@ -169,3 +187,4 @@ function mostrarArticulosComprados(comprados){
         })
 }
 
+*/
