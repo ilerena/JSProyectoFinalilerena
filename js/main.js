@@ -1,17 +1,18 @@
 class Jugadores{
     constructor(nombre,apellido,dni,puesto,altura,peso){
         this.nombre= nombre;
-        this.apellido=apellido;
-        this.dni=dni;
-        this.puesto=puesto;
-        this.altura=altura;
-        this.peso=peso;
+        this.apellido= apellido;
+        this.dni= dni;
+        this.puesto= puesto;
+        this.altura= altura;
+        this.peso= peso;
         this.minutos_acumulados=0;
     }
 }
 
 let plantel = []; 
 let documentos = [];
+
 
 let jugador1 = new Jugadores("ignacio", "lerena", 38054175, 4, 187, 115);
 plantel.push(jugador1);
@@ -23,7 +24,11 @@ plantel.push(jugador3);
 for (let docs of plantel){
     documentos.push(docs.dni);
 }
-/*  
+
+
+
+/*
+
 let ingresoUsuario = document.getElementById("botonIngreso");
 ingresoUsuario.addEventListener("click", ingreso);
 function ingreso (){
@@ -51,26 +56,39 @@ function ingreso (){
     }
     
 }
-*/
+
 
 let nuevo_jugador = document.getElementById("submitRegistro");
 nuevo_jugador.addEventListener("click", registro);
-function registro (){
-    let dni = document.getElementById("dni_registro");
-    let nombre = document.getElementById("nombre_registro");
-    let apellido = document.getElementById("apellido_registro");
-    let puesto = document.getElementById("puesto_registro");
-    let altura = document.getElementById("altura_registro");
-    let peso = document.getElementById("peso_registro");
+function registro (e){
+    e.preventDefault();
+    console.log(plantel);
+    let dni = parseInt(document.getElementById("dni_registro").value);
+    let nombre = document.getElementById("nombre_registro").value;
+    let apellido = document.getElementById("apellido_registro").value;
+    let puesto = parseInt(document.getElementById("puesto_registro").value);
+    let altura = parseInt(document.getElementById("altura_registro").value);
+    let peso = parseInt(document.getElementById("peso_registro").value);
 
-    let nuevo_registro = new Jugadores(nombre, apellido, dni, puesto, altura, peso);
-    plantel.push(nuevo_registro);
-    console.log(`Bienvenido al sistema ${nombre}. Ya sos oficialmente parte del plantel!`);
-    
+    let comprobacion = documentos.includes(dni);
+    let divMensajeRegistrado = document.getElementById("divMensajeRegistrado");
+    let mensajeRegistrado = document.createElement("p");
+
+    if (comprobacion){
+        mensajeRegistrado.innerHTML = `Usted ya esta registrado
+                                    <button><a href="monitoreo.html">Regresar al inicio</a></button>`;
+        divMensajeRegistrado.append(mensajeRegistrado);                            
+    } else {
+        let nuevo_registro = new Jugadores(nombre, apellido, dni, puesto, altura, peso);
+        plantel.push(nuevo_registro);
+        mensajeRegistrado.innerText = `Bienvenido al sistema ${nombre}. Ya sos oficialmente parte del plantel!`;
+        divMensajeRegistrado.append(mensajeRegistrado);
+    }
+    console.log(plantel);
 }
 console.log(plantel);
 
-/*
+
 
 let monitoreo_partido = document.getElementById("submitMonitoreo");
 monitoreo_partido.addEventListener("click", monitoreo);
@@ -101,9 +119,9 @@ function monitoreo (){
         }
     }
 }
-*/
 
-/*
+
+
 
 ///// BOUTIQUE /////
 const articulos = [
@@ -186,5 +204,4 @@ function mostrarArticulosComprados(comprados){
         contenedor_compra.appendChild(divArticulo);
         })
 }
-
 */

@@ -46,7 +46,15 @@ ul li {
 }
 
 
-
+#divMensajeRegistrado {
+  width: 100vw;
+  padding: 25px 0;
+  color: white;
+  text-align: center;
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+}
 
 /* BOUTIQUE */
 
