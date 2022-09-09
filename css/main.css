@@ -103,3 +103,17 @@ body{
 .btn_agregar:hover{
   background-color: rgb(152, 204, 224);
 }
+
+/* REGISTRO */
+
+#disRegistro form {
+  color: white;
+}
+
+
+/*INICIO SESION */
+
+#divInicioSesion {
+  color: white;
+  text-align: center;
+}

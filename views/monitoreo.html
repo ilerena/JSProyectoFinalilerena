@@ -9,16 +9,37 @@
     <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
-    <div id="divIngreso">
-        <h2>INGRESO </h2>
-        <div>
-            <label for="nombre_usuario">Ingrese su DNI</label>
-            <input type="text" id="dni_usuario_ingreso">
-            <button id="botonIngreso">Ingresar</button>
-
-            <div id="mensaje"></div>
+    <nav class="navbar navbar-expand-lg bg-main sticky-top">
+        <div class="container-fluid me-1">
+            <a class="navbar-brand" href="index.html"><img src="" alt=""></a>
+            <button class="navbar-toggler navbar-toggler-icon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item">
+                        <a class="nav-link  viewscolor" href="monitoreo.html">Monitoreo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link viewscolor" href="boutique.html">Boutique</a>
+                    </li>    
+                    <li class="nav-item">
+                        <a class="nav-link viewscolor" href="registro.html">Registro</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link viewscolor" href="">Fixture</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  viewscolor" href="">El club</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link  viewscolor" href="login.html">Iniciar Sesion</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
+    </nav>
+
     <div id="divMonitoreo">
         </form action="">
             <h2>MONITOREO</h2>
@@ -46,7 +67,7 @@
 
 
 
-    <script src="../js/main.js"></script>
+    <script src="../js/monitoreo.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script></body>
 </body>
 </html>

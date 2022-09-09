@@ -6,7 +6,7 @@ let inputRegistroPass = document.getElementById("passRegister");
 let formularioIngresar = document.getElementById("login");
 let inputLoginUser = document.getElementById("user");
 let inputLoginPass = document.getElementById("pass");
-let error = document.getElementById("error");
+let divError = document.getElementById("error")
 
 
 class Usuarios {
@@ -40,6 +40,7 @@ formularioIngresar.addEventListener("submit", (e) => {
             window.location.href = "monitoreo.html";
         } else {
             error.innerHTML = "<p> Acceso incorrecto, intente nuevamente </p>"
+            divError.append(error);
         }
 
     }
