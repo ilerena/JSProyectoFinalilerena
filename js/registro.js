@@ -23,7 +23,7 @@ plantel.push(jugador3);
 
 for (let docs of plantel){
     documentos.push(docs.dni);
-}
+};
 
 
 
@@ -36,7 +36,6 @@ nuevo_jugador.addEventListener("submit", (e) => {
     let puesto = parseInt(document.getElementById("puesto_registro").value);
     let altura = parseInt(document.getElementById("altura_registro").value);
     let peso = parseInt(document.getElementById("peso_registro").value);
-
     let comprobacion = documentos.includes(dni);
     let divMensajeRegistrado = document.getElementById("divMensajeRegistrado");
     let mensajeRegistrado = document.createElement("p");
@@ -51,4 +50,4 @@ nuevo_jugador.addEventListener("submit", (e) => {
         mensajeRegistrado.innerText = `Bienvenido al sistema ${nombre}. Ya sos oficialmente parte del plantel!`;
         divMensajeRegistrado.append(mensajeRegistrado);
     }
-})
+});

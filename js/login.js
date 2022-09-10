@@ -32,7 +32,7 @@ formularioIngresar.addEventListener("submit", (e) => {
     e.preventDefault();
     let us = inputLoginUser.value;
     let ps = inputLoginPass.value;
-
+    error.innerHTML="";  
     for (let user of usuarios){
         if (us == user.usuario  && ps == user.contraseña){
             alert("Acceso correcto");

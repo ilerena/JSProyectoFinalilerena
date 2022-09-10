@@ -3,6 +3,7 @@ let monitoreo_partido = document.getElementById("submitMonitoreo");
 monitoreo_partido.addEventListener("click", monitoreo);
 function monitoreo (){
     let mensajeRegistro = document.getElementById("mensajeRegistro");
+    mensajeRegistro.innerHTML = "";
     let ultimo_partido = document.getElementById("jugo");
     if (ultimo_partido.value == "si"){
     let minutos_ultimo_partido = document.getElementById("minutosjugados");
