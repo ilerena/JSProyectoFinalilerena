@@ -1,106 +1,185 @@
-//// BOUTIQUE /////
-const articulos = [
-    {id:1, nombre:"Short", precio:2500, img: "../img/boutique/short.jpg"},
-    {id:2, nombre:"Camiseta", precio:4500, img: "../img/boutique/camiseta.jpg"},
-    {id:3, nombre:"Medias", precio:1500, img: "../img/boutique/medias.jpg"},
-    {id:4, nombre:"Casco", precio:2000, img:"../img/boutique/casco.jpg"},
-    {id:5, nombre:"Protector", precio:1800, img: "../img/boutique/protector.jpg"},
-    {id:6, nombre:"Cintas", precio:700, img: "../img/boutique/cintas.jpg"},
-    {id:7, nombre:"Botines", precio:15000, img: "../img/boutique/botines.jpg"}
-]
+const cards = document.getElementById("cards");
+const items = document.getElementById("items");
+const footer= document.getElementById("footer");
+const templateCard = document.getElementById("template-card").content;
+const templateFooter = document.getElementById("template-footer").content;
+const templateCarrito = document.getElementById("template-carrito").content;
+const fragment = document.createDocumentFragment();
+let carrito = {};
 
-let contenedor_articulos = document.querySelector(".contenedor_articulos");
-let contenedor_compra = document.querySelector(".contenedor_compra");
-let carrito = [];
+document.addEventListener("DOMContentLoaded", () => {
+    fetchData()
+    if (localStorage.getItem("carrito")){
+        carrito = JSON.parse(localStorage.getItem("carrito"));
+        pintarCarrito();
+    }
+});
+
+cards.addEventListener("click", (e) =>{
+    addCarrito(e);
+});
+
+items.addEventListener("click", e =>{
+    btnAccion(e);
+});
+
+const fetchData = async () => {
+    try {
+        const res = await fetch('../json/api.json')
+        const data = await res.json()
+        pintarCards(data)
+    } catch (error){
+        console.log(error)
+    }
+};
 
 
-document.addEventListener("DOMContentLoaded", function(){
-    mostrarArticulos();
-})
+function pintarCards  (data){
+    data.forEach(producto =>{
+        templateCard.querySelector("h5").textContent = producto.nombre;
+        templateCard.querySelector("p").textContent = producto.precio;
+        templateCard.querySelector("img").setAttribute("src", producto.img);
+        templateCard.querySelector(".btn-dark").dataset.id = producto.id;
 
-function mostrarArticulos() {
-    articulos.forEach(function(articulo){
-    const divArticulo = document.createElement("div");
-    divArticulo.classList.add("card");
-
-    const imagenArticulo = document.createElement("img");
-    imagenArticulo.src = articulo.img;
-    imagenArticulo.className = "imagen-articulo";        
-
-    const tituloArticulo = document.createElement("h2");
-    tituloArticulo.textContent = articulo.nombre;
-    tituloArticulo.classList.add("titulo_articulo");
-
-    const precioArticulo = document.createElement("h3");
-    precioArticulo.textContent = `$${articulo.precio}`;
-    precioArticulo.classList.add("precio_articulo");
-
-    const btn_agregar = document.createElement("button");
-    btn_agregar.textContent = "Agregar al carrito";
-    btn_agregar.classList.add("btn_agregar");
-
-    btn_agregar.onclick = ()=> {comprar(articulo)};
-
-    divArticulo.appendChild(imagenArticulo);
-    divArticulo.appendChild(tituloArticulo);
-    divArticulo.appendChild(precioArticulo);
-    divArticulo.appendChild(btn_agregar);
-
-    contenedor_articulos.appendChild(divArticulo);
-    })
+        const clone = templateCard.cloneNode(true);
+        fragment.appendChild(clone);
+    }) 
+    cards.appendChild(fragment);
 }
 
-function comprar (articulo){
-    let name = articulo.nombre;
-    let price = articulo.precio;
-    let image = articulo.img;
-    let ID = articulo.id;
-    let comprado ={
-        id : ID,
-        nombre: name,
-        precio: price,
-        imagen: image,
+function addCarrito (e) {
+    if (e.target.classList.contains("btn-dark")){
+        SetCarrito(e.target.parentElement);
+    }
+    e.stopPropagation()
+};
+
+function SetCarrito (objeto){ 
+    const producto = {
+        id: objeto.querySelector(".btn-dark").dataset.id,
+        nombre: objeto.querySelector("h5").textContent, 
+        precio: objeto.querySelector("p").textContent,
         cantidad: 1
     }
 
-    let carritoIds = [];
-    for (ID of carrito){
-        carritoIds.push(ID.id);
+    if (carrito.hasOwnProperty(producto.id)){
+        producto.cantidad = carrito[producto.id].cantidad + 1;
     }
 
-    if (carritoIds.includes(comprado.id)){
-        console.log("ya agrego ese producto");
-    } else {
-        carrito.push(comprado);
-    }
-    let carrito_JSON = JSON.stringify(carrito);
-    localStorage.setItem("carrito", carrito_JSON);
+    carrito[producto.id] = {...producto}
+    toastifyPos();
+    pintarCarrito();
+};
 
-    mostrarCarrito ();
+function pintarCarrito() {
+    items.innerHTML = "";
+    Object.values(carrito).forEach( producto => {
+        templateCarrito.querySelector("th").textContent = producto.id;
+        templateCarrito.querySelectorAll("td")[0].textContent = producto.nombre;
+        templateCarrito.querySelectorAll("td")[1].textContent = producto.cantidad;
+        templateCarrito.querySelector(".btn-info").dataset.id = producto.id;
+        templateCarrito.querySelector(".btn-danger").dataset.id = producto.id;
+        templateCarrito.querySelector("span").textContent = producto.cantidad*producto.precio;
+        const clone = templateCarrito.cloneNode(true);
+        fragment.appendChild(clone);
+    })
+    items.appendChild(fragment);
+
+    pintarFooter();
+    localStorage.setItem("carrito", JSON.stringify(carrito));
 }
 
+function pintarFooter () {
+    footer.innerHTML = "";
+    if (Object.keys(carrito).length === 0){
+        footer.innerHTML = `<th scope="row" colspan="5">Carrito vacío - comience a comprar!</th>`
+        return
+    } 
 
-function mostrarCarrito (){
-    let carrito = localStorage.getItem("carrito");
-    carrito = JSON.parse(carrito);
-    let fila = document.createElement("tr");
-    
-    
-    for (producto of carrito){
-        fila.innerHTML = `<td><img src="${producto.imagen}"></td>
-                    <td>${producto.nombre}</td>
-                    <td>${producto.cantidad}</td>
-                    <td>${producto.precio}</td>
-                    <td><button class="btn-danger borrar_elemento">Borrar</button></td>`
-        let tabla = document.getElementById("tbody");
-        tabla.append(fila);
+    const nCantidad = Object.values(carrito).reduce((acc, {cantidad})=> acc+cantidad,0);
+    const nPrecio = Object.values(carrito).reduce((acc, {cantidad, precio})=> acc + cantidad*precio,0);
 
-        let botones_borrar = document.querySelectorAll(".borrar_elemento");
-        for (let boton of botones_borrar){
-            boton.addEventListener("click", (e)=>{
-                e.target.parentNode.parentNode.remove();
-            })
-        }
-    }
+    templateFooter.querySelectorAll("td")[0].textContent = nCantidad;
+    templateFooter.querySelector("span").textContent = nPrecio;
+
+    const clone = templateFooter.cloneNode(true);
+    fragment.appendChild(clone);
+    footer.appendChild(fragment);
+
+    const btnVaciar = document.getElementById("vaciar-carrito");
+    btnVaciar.addEventListener("click", ()=>{
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-success',
+                cancelButton: 'btn btn-danger'
+            },
+            buttonsStyling: false
+        })
+        swalWithBootstrapButtons.fire({
+            title: 'Estas seguro?',
+            text: "Estas a punto de eliminar todos los productos del carrito",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Si, vaciar carrito',
+            cancelButtonText: 'No, salvar carrito!',
+            reverseButtons: true
+        }).then((result) => {
+            if (result.isConfirmed) {
+                swalWithBootstrapButtons.fire(
+                'Eliminado!',
+                'Se vació el carrito correctamente',
+                'success'
+            );
+            carrito = {};
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+            swalWithBootstrapButtons.fire(
+                'Accion cancelada',
+                'Se guardó el carrito, podes continuar con tu compra',
+                'error'
+            )}
+        })
+        pintarCarrito();
+        })
 }
 
+function btnAccion (e) {
+    if (e.target.classList.contains("btn-info")){
+        const producto = carrito[e.target.dataset.id];
+        producto.cantidad++;
+        carrito [e.target.dataset.id] = {...producto};
+        toastifyPos()
+        pintarCarrito();
+    }
+    if (e.target.classList.contains("btn-danger")){
+        const producto = carrito[e.target.dataset.id];
+        producto.cantidad--;
+        producto.cantidad === 0 ? delete carrito[e.target.dataset.id] : false;
+        toastifyNeg();
+        pintarCarrito();
+
+    }
+    e.stopPropagation();
+}
+
+function toastifyNeg (){
+    Toastify({
+        text: "Borraste una unidad",
+        style:{
+            color: "black",
+            background:"#f5c3b6"
+        }, 
+        duration: 2000
+        
+        }).showToast();
+}
+function toastifyPos (){
+    Toastify({
+        text: "Agregaste una unidad",
+        style:{
+            color: "black",
+            background:"#e0ffe3"
+        }, 
+        duration: 2000
+        
+        }).showToast();
+}

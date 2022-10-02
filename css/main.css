@@ -104,6 +104,10 @@ body{
   background-color: rgb(152, 204, 224);
 }
 
+.textoBlanco{
+  color: white;
+}
+
 /* REGISTRO */
 
 #disRegistro form {
@@ -117,3 +121,4 @@ body{
   color: white;
   text-align: center;
 }
+
