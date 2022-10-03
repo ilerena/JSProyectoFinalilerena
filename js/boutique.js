@@ -34,6 +34,7 @@ const fetchData = async () => {
 };
 
 
+
 function pintarCards  (data){
     data.forEach(producto =>{
         templateCard.querySelector("h5").textContent = producto.nombre;
