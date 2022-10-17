@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.36/dist/sweetalert2.all.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
     <link rel="stylesheet" href="../css/main.css">
 
 </head>
@@ -28,12 +30,6 @@
                         <a class="nav-link viewscolor" href="registro.html">Registro</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link viewscolor" href="">Fixture</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link  viewscolor" href="">El club</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link  viewscolor" href="login.html">Iniciar Sesion</a>
                     </li>
                 </ul>
@@ -50,8 +46,11 @@
                 <input type="password" id="pass">
             <button type="submit" id="ingresar">Iniciar Sesión</button>
         </form>
+        <br>
+        <button type="button" id="nuevoUsuario">Aun no estoy registrado</button>
 
-        <h2>Registrarse</h2>
+        <div id="divNuevoUsuario">
+        <h2>Crear Nuevo Usuario</h2>
         <form id="register">
             <label for="nombre">Usuario</label>
                 <input type="text" id="userRegister">
@@ -59,15 +58,16 @@
                 <input type="password" id="passRegister">
             <button type="submit" id="registrar">Registrarse</button>
         </form>
+        </div>
         <div id="error">
             
         </div>
     </div>
     
 
-
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
 <script src="../js/login.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script></body>
-
+<script src="sweetalert2.all.min.js"></script>
 </body>
 </html> 

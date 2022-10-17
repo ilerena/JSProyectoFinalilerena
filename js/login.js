@@ -7,6 +7,11 @@ let formularioIngresar = document.getElementById("login");
 let inputLoginUser = document.getElementById("user");
 let inputLoginPass = document.getElementById("pass");
 let divError = document.getElementById("error")
+let nuevoUsuario = document.getElementById("nuevoUsuario");
+
+nuevoUsuario.addEventListener("click", ()=>{
+    
+})
 
 
 class Usuarios {
@@ -23,10 +28,11 @@ formularioRegistro.addEventListener("submit", (e) => {
     if (inputRegistroPass != "" && inputRegistroUser != ""){
         let nuevoUsuario = new Usuarios (inputRegistroUser.value, inputRegistroPass.value);
         usuarios.push(nuevoUsuario);
-        console.log(usuarios);
-        alert("Usuario creado correctamente "+ inputRegistroUser.value);
+        Swal.fire((`Usuario "${inputRegistroUser.value}" creado correctamente`));
+
     }
 })
+
 
 formularioIngresar.addEventListener("submit", (e) => {
     e.preventDefault();
@@ -35,7 +41,6 @@ formularioIngresar.addEventListener("submit", (e) => {
     error.innerHTML="";  
     for (let user of usuarios){
         if (us == user.usuario  && ps == user.contraseña){
-            alert("Acceso correcto");
             localStorage.setItem("usuario", user.usuario)
             window.location.href = "monitoreo.html";
         } else {
